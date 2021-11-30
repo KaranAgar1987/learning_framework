@@ -1,6 +1,9 @@
 package org.learn.utils;
 
+import org.learn.constants.FrameworkConstants;
+
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
@@ -8,18 +11,27 @@ import java.util.Properties;
 public final class ReadPropertyFile {
 
     private ReadPropertyFile(){}
-    public static final Properties prop = new Properties();
 
+    public static Properties prop = new Properties();
+    public static FileInputStream file;
+    static {
+        try {
+            file = new FileInputStream(FrameworkConstants.getCONFIGPROPPATH());
+            prop.load(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Covert to hasmap if the properties fetch request is too large,
+    // else its already optimized in the current hashtable format
     public static String getValue(String Key) throws Exception {
-        String value=null;
-        FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config/config.properties");
-        prop.load(file);
-        value =prop.getProperty(Key);
-        if(Objects.isNull(value))
+        if(Objects.isNull(prop.getProperty(Key)) || Objects.isNull(Key))
         {
             throw new Exception("Property name " + Key + " not Found in the config file.");
         }
-        return value;
-
+        return prop.getProperty(Key);
     }
 }
