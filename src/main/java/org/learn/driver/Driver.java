@@ -6,23 +6,27 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Objects;
 
-public class Driver {
+public class Driver{
 
-    public static WebDriver driver;
+    private static WebDriver drv;
+
+    private Driver(){}
 
     public static void initDriver(){
-        if (Objects.isNull(driver)) {
+        if (Objects.isNull(drv)) {
             System.setProperty("webdriver.chrome.driver", FrameworkConstants.getCROMEDRIVERPATH());
-            driver = new ChromeDriver();
-            driver.get("https://www.google.com/");
+            drv = new ChromeDriver();
+            DriverManager.setWebDriver(drv);
+            DriverManager.getWebDriver().get("https://www.google.com/");
         }
     }
 
     public static void quitdriver()
     {
-        if (Objects.nonNull(driver!=null)) {
-            driver.quit();
-            driver = null;
+        if (Objects.nonNull(DriverManager.getWebDriver())) {
+            DriverManager.getWebDriver().close();
+            DriverManager.getWebDriver().quit();
+            DriverManager.unload();
         }
     }
 }
