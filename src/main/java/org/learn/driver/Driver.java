@@ -1,30 +1,29 @@
 package org.learn.driver;
 
 import org.learn.constants.FrameworkConstants;
-import org.openqa.selenium.WebDriver;
+import org.learn.utils.ReadPropertyFile;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Driver{
 
-    private static WebDriver drv;
 
     private Driver(){}
 
-    public static void initDriver(){
-        if (Objects.isNull(drv)) {
+    public static void initDriver() throws Exception {
+        System.out.println(Thread.currentThread().getId() + " : " + DriverManager.getWebDriver());
+        if (Objects.isNull(DriverManager.getWebDriver())) {
             System.setProperty("webdriver.chrome.driver", FrameworkConstants.getCROMEDRIVERPATH());
-            drv = new ChromeDriver();
-            DriverManager.setWebDriver(drv);
-            DriverManager.getWebDriver().get("https://www.google.com/");
+            DriverManager.setWebDriver(new ChromeDriver());
+            DriverManager.getWebDriver().get(ReadPropertyFile.getValue("url"));
         }
     }
 
     public static void quitdriver()
     {
         if (Objects.nonNull(DriverManager.getWebDriver())) {
-            DriverManager.getWebDriver().close();
             DriverManager.getWebDriver().quit();
             DriverManager.unload();
         }

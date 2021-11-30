@@ -18,4 +18,11 @@ public final class LoginpageTests extends BaseTest{
         DriverManager.getWebDriver().findElement(By.name("q")).sendKeys("Automation", Keys.ENTER);
     }
 
+    @Test
+    public void test3()
+    {
+
+        DriverManager.getWebDriver().findElement(By.name("q")).sendKeys("Automation", Keys.ENTER);
+    }
+
 }

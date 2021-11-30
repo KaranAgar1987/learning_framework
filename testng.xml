@@ -4,8 +4,7 @@
     <test verbose="2" preserve-order="true" thread-count="2" parallel="classes"
           name="C:/Users/karan.agarwal/IdeaProjects/learning_framework">
 
-        <classes><class name="org.learn.tests.HomepageTests">
-            <methods><include name="test1"/></methods></class>
-            <class name="org.learn.tests.LoginpageTests">
-                <methods><include name="test2"/></methods>
-            </class></classes></test></suite>
+        <classes>
+            <class name="org.learn.tests.HomepageTests"></class>
+            <class name="org.learn.tests.LoginpageTests"></class>
+        </classes></test></suite>

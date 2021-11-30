@@ -5,18 +5,19 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.IOException;
+
 public class BaseTest {
 
     protected BaseTest(){}
 
     @BeforeMethod
-    public void setup()
-    {
+    protected void setup() throws Exception {
         Driver.initDriver();
     }
 
     @AfterMethod
-    public void teardown()
+    protected void teardown()
     {
         Driver.quitdriver();
     }

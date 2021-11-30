@@ -9,8 +9,6 @@ public final class FrameworkConstants {
 
     }
 
-
-
     public static String getCROMEDRIVERPATH() {
         return CROMEDRIVERPATH;
     }
