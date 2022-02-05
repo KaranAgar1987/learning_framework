@@ -1,5 +1,6 @@
 package org.learn.driver;
 
+import org.enums.ConfigProperties;
 import org.learn.constants.FrameworkConstants;
 import org.learn.utils.ReadPropertyFile;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +18,7 @@ public class Driver{
         if (Objects.isNull(DriverManager.getWebDriver())) {
             System.setProperty("webdriver.chrome.driver", FrameworkConstants.getCROMEDRIVERPATH());
             DriverManager.setWebDriver(new ChromeDriver());
-            DriverManager.getWebDriver().get(ReadPropertyFile.getValue("url"));
+            DriverManager.getWebDriver().get(ReadPropertyFile.getValue(ConfigProperties.URL));
         }
     }
 
