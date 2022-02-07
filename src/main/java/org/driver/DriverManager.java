@@ -1,4 +1,4 @@
-package org.learn.driver;
+package org.driver;
 
 import org.openqa.selenium.WebDriver;
 

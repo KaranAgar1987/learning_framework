@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import org.constants.FrameworkConstants;
 
 import java.awt.*;
 import java.io.File;
@@ -16,26 +17,26 @@ public final class ExtentReport {
 
     private static ExtentReports extent = null;
 
-    public static void initReports()
-    {
+    public static void initReports() throws Exception {
         if (Objects.isNull(extent)) {
             extent = new ExtentReports();
-            ExtentSparkReporter html = new ExtentSparkReporter("index.html");
+            ExtentSparkReporter html = new ExtentSparkReporter(FrameworkConstants.getExtentReportFilePath());
             extent.attachReporter(html);
             html.config().setTheme(Theme.DARK);
-            html.config().setDocumentTitle("Automation Framework Report");
-            html.config().setReportName("Test ABC");
+            html.config().setDocumentTitle("Automation Framework Report - Team NAME");
+            html.config().setReportName("Platform Report");
         }
     }
 
-    public static void flushReports() throws IOException {
+    public static void flushReports() throws Exception {
 
         if (Objects.nonNull(extent))
         {
             extent.flush();
 
         }
-        Desktop.getDesktop().browse(new File("index.html").toURI());
+        if (!FrameworkConstants.getEXTENTREPORTPATH().isEmpty())
+        Desktop.getDesktop().browse(new File(FrameworkConstants.getExtentReportFilePath()).toURI());
 
     }
 

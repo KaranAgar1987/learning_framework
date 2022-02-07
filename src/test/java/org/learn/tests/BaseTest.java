@@ -1,8 +1,6 @@
 package org.learn.tests;
 
-import org.extentreport.ExtentReport;
-import org.learn.driver.Driver;
-import org.openqa.selenium.WebDriver;
+import org.driver.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;

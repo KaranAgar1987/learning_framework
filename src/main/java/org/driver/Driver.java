@@ -1,11 +1,10 @@
-package org.learn.driver;
+package org.driver;
 
 import org.enums.ConfigProperties;
-import org.learn.constants.FrameworkConstants;
-import org.learn.utils.ReadPropertyFile;
+import org.constants.FrameworkConstants;
+import org.utils.ReadPropertyFile;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class Driver{

@@ -15,17 +15,16 @@ public class OrangeHRMLoginTest extends BaseTest{
 
         return new Object[][]{
                 {"Admin","admin123"},
-                {"Admin","admin123"}
+                {"Admin1","admin123"}
         };
     }
 
 
     @Test(dataProvider = "loginDataProvider" )
-    public void test_login(String username,String password) {
+    public void test_login(String username,String password) throws Exception {
 
         OrangeHRMLoginPage orl = new OrangeHRMLoginPage();
         String title = orl.enterUserName(username).enterPassword(password).click_login().click_logout().getPageTitle();
-
         Assertions.assertThat(title)
                 .isEqualToIgnoringCase("OrangeHRM")
                 .isInstanceOf(String.class);

@@ -1,7 +1,7 @@
-package org.learn.utils;
+package org.utils;
 
 import org.enums.ConfigProperties;
-import org.learn.constants.FrameworkConstants;
+import org.constants.FrameworkConstants;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

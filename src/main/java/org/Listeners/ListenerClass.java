@@ -1,6 +1,8 @@
 package org.Listeners;
 
 import lombok.SneakyThrows;
+import org.constants.FrameworkConstants;
+import org.enums.ConfigProperties;
 import org.extentreport.ExtentLogger;
 import org.extentreport.ExtentManager;
 import org.extentreport.ExtentReport;
@@ -9,6 +11,7 @@ import org.testng.*;
 public class ListenerClass implements ITestListener ,ISuiteListener {
 
 
+    @SneakyThrows
     @Override
     public void onStart(ISuite suite) {
         ExtentReport.initReports();
@@ -25,19 +28,22 @@ public class ListenerClass implements ITestListener ,ISuiteListener {
         ExtentReport.createtest(result.getMethod().getMethodName());
     }
 
+    @SneakyThrows
     @Override
     public void onTestSuccess(ITestResult result) {
-        ExtentLogger.pass(result.getMethod().getMethodName() + " is passed. ");
+        ExtentLogger.pass(result.getMethod().getMethodName() + " is passed. ",true);
     }
 
+    @SneakyThrows
     @Override
     public void onTestFailure(ITestResult result) {
-        ExtentLogger.fail(result.getMethod().getMethodName() + " is Failed. ");
+        ExtentLogger.fail(result.getMethod().getMethodName() + " is Failed. ",true);
     }
 
+    @SneakyThrows
     @Override
     public void onTestSkipped(ITestResult result) {
-        ExtentLogger.skip(result.getMethod().getMethodName() + " is Skipped. ");
+        ExtentLogger.skip(result.getMethod().getMethodName() + " is Skipped. ",true);
     }
 
 

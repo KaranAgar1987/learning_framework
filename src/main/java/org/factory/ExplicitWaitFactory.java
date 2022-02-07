@@ -1,14 +1,12 @@
 package org.factory;
 
 import org.enums.WaitPattern;
-import org.learn.constants.FrameworkConstants;
-import org.learn.driver.DriverManager;
+import org.constants.FrameworkConstants;
+import org.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.lang.invoke.SwitchPoint;
 
 public class ExplicitWaitFactory {
 

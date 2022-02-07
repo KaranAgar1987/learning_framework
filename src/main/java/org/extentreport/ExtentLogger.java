@@ -1,5 +1,12 @@
 package org.extentreport;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+import org.driver.DriverManager;
+import org.enums.ConfigProperties;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.utils.ReadPropertyFile;
+
 public final class ExtentLogger {
 
     private ExtentLogger(){}
@@ -15,4 +22,33 @@ public final class ExtentLogger {
         ExtentManager.geExtentTest().skip(message);
     }
 
+    public static void pass(String message, boolean isScreenshotNeeded) throws Exception {
+        if (ReadPropertyFile.getValue(ConfigProperties.PASSEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
+                && isScreenshotNeeded){
+            ExtentManager.geExtentTest().pass(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+        }else{
+            ExtentLogger.pass(message);
+        }
+
+    }
+    public static void fail(String message, boolean isScreenshotNeeded) throws Exception {
+        if (ReadPropertyFile.getValue(ConfigProperties.FAILEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
+                && isScreenshotNeeded){
+            ExtentManager.geExtentTest().fail(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+        }else{
+            ExtentLogger.fail(message);
+        }
+
+    }public static void skip(String message, boolean isScreenshotNeeded) throws Exception {
+        if (ReadPropertyFile.getValue(ConfigProperties.SKIPPEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
+                && isScreenshotNeeded){
+            ExtentManager.geExtentTest().skip(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+        }else{
+            ExtentLogger.skip(message);
+        }
+
+    }
+    public static String getBase64Image(){
+        return ((TakesScreenshot)DriverManager.getWebDriver()).getScreenshotAs(OutputType.BASE64);
+    }
 }
