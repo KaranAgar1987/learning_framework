@@ -1,6 +1,9 @@
 package org.pages;
 
 import com.google.common.util.concurrent.Uninterruptibles;
+import org.extentreport.ExtentLogger;
+import org.extentreport.ExtentManager;
+import org.extentreport.ExtentReport;
 import org.learn.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -15,15 +18,10 @@ public class OrangeHRMHomePage extends BasePage{
         private final By lnk_logout = By.xpath("//a[text()='Logout']");
 
         public OrangeHRMLoginPage click_logout() {
-            //DriverManager.getWebDriver().findElement(lnk_About).click();
-            //Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
-            //WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(),10);
-            ////wait.until(ExpectedConditions.elementToBeClickable(lnk_logout));
-            //wait.until(e -> e.findElement(lnk_logout).isEnabled());
-            //DriverManager.getWebDriver().findElement(lnk_logout).click();
 
-            click(lnk_About);
-            click(lnk_logout);
+            click(lnk_About,"Welcome Link");
+            click(lnk_logout,"Logout Link");
+
             return new OrangeHRMLoginPage();
         }
 
