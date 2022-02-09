@@ -6,6 +6,7 @@ import org.enums.ConfigProperties;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.utils.ReadPropertyFile;
+import org.utils.screenshotUtils;
 
 public final class ExtentLogger {
 
@@ -25,7 +26,7 @@ public final class ExtentLogger {
     public static void pass(String message, boolean isScreenshotNeeded) throws Exception {
         if (ReadPropertyFile.getValue(ConfigProperties.PASSEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
                 && isScreenshotNeeded){
-            ExtentManager.geExtentTest().pass(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+            ExtentManager.geExtentTest().pass(message, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotUtils.getBase64Image()).build());
         }else{
             ExtentLogger.pass(message);
         }
@@ -34,7 +35,7 @@ public final class ExtentLogger {
     public static void fail(String message, boolean isScreenshotNeeded) throws Exception {
         if (ReadPropertyFile.getValue(ConfigProperties.FAILEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
                 && isScreenshotNeeded){
-            ExtentManager.geExtentTest().fail(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+            ExtentManager.geExtentTest().fail(message, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotUtils.getBase64Image()).build());
         }else{
             ExtentLogger.fail(message);
         }
@@ -42,13 +43,11 @@ public final class ExtentLogger {
     }public static void skip(String message, boolean isScreenshotNeeded) throws Exception {
         if (ReadPropertyFile.getValue(ConfigProperties.SKIPPEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")
                 && isScreenshotNeeded){
-            ExtentManager.geExtentTest().skip(message, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Image()).build());
+            ExtentManager.geExtentTest().skip(message, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotUtils.getBase64Image()).build());
         }else{
             ExtentLogger.skip(message);
         }
 
     }
-    public static String getBase64Image(){
-        return ((TakesScreenshot)DriverManager.getWebDriver()).getScreenshotAs(OutputType.BASE64);
-    }
+
 }

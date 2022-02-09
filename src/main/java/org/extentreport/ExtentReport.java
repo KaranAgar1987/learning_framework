@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.constants.FrameworkConstants;
+import org.enums.TestCategory;
 
 import java.awt.*;
 import java.io.File;
@@ -45,4 +46,20 @@ public final class ExtentReport {
         ExtentTest test =  extent.createTest(testcasename);
         ExtentManager.setExtentTest(test);
     }
+
+    public static void AddAuthors(String[] authors)
+    {
+        for (String temp: authors)
+        {
+            ExtentManager.geExtentTest().assignAuthor(temp);
+        }
+    }
+    public static void AddCategory(TestCategory[] Categories)
+    {
+        for (TestCategory temp: Categories)
+        {
+            ExtentManager.geExtentTest().assignCategory(temp.toString());
+        }
+    }
+
 }

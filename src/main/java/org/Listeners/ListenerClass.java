@@ -1,12 +1,16 @@
 package org.Listeners;
 
 import lombok.SneakyThrows;
+import org.FrameworkAnnotation.FrameworkAnnotation;
 import org.constants.FrameworkConstants;
 import org.enums.ConfigProperties;
 import org.extentreport.ExtentLogger;
 import org.extentreport.ExtentManager;
 import org.extentreport.ExtentReport;
 import org.testng.*;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ListenerClass implements ITestListener ,ISuiteListener {
 
@@ -26,6 +30,8 @@ public class ListenerClass implements ITestListener ,ISuiteListener {
     @Override
     public void onTestStart(ITestResult result) {
         ExtentReport.createtest(result.getMethod().getMethodName());
+        ExtentReport.AddAuthors(result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotation.class).author());
+        ExtentReport.AddCategory(result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotation.class).Category());
     }
 
     @SneakyThrows
@@ -38,6 +44,8 @@ public class ListenerClass implements ITestListener ,ISuiteListener {
     @Override
     public void onTestFailure(ITestResult result) {
         ExtentLogger.fail(result.getMethod().getMethodName() + " is Failed. ",true);
+        ExtentLogger.fail(Arrays.toString(result.getThrowable().getStackTrace()));
+
     }
 
     @SneakyThrows
