@@ -22,7 +22,7 @@ public class DataProviderTest {
 
     @DataProvider
     public Object getData() throws IOException {
-		//Test Comments
+		//Test Commentssd
         HashMap<String,Object> map1 = new ObjectMapper().readValue(new File(System.getProperty("user.dir") + "/src/test/resources/json/config.json"), new TypeReference<HashMap<String, Object>>() {});
         HashMap<String,Object> map2 = new ObjectMapper().readValue(new File(System.getProperty("user.dir") + "/src/test/resources/json/config.json"), new TypeReference<HashMap<String, Object>>() {});
         return new Object[] {map1,map2};
